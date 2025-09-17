@@ -2,8 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import VehicleDetails, OTPDetails
-
+from .models import VehicleDetails
 from .serializers import VehicleDetailsSerializer, otpSerializer
 from rest_framework.views import APIView
 import random
@@ -70,6 +69,8 @@ def vehicle_details_op(request, pk):
         return Response({'message':'Vehicle delete successfully!'},status = status.HTTP_204_NO_CONTENT)
 
 
+def generate_otp(length = 6):
+    return ''.join([str(random.randint(0,9)) for _ in range(length)])
 @api_view(['POST'])
 def create_views_otp(request):
     serializer = otpSerializer(data=request.data)
@@ -80,31 +81,6 @@ def create_views_otp(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST) 
-
-def generate_otp(length = 6):
-    return ''.join([str(random.randint(0,9)) for _ in range(length)])
-
-class SendOTPView(APIView):
-
-    def post(self, request):
-        serializer = otpSerializer(data=request.data)
-
-        if serializer.is_valid():
-            mobileNumber = serializer.validated_data['mobileNumber']
-            otp = generate_otp(6)
-
-            # Save to database
-            OTPDetails.objects.create(mobileNumber=mobileNumber, otp=otp)
-
-            # Print the OTP for testing (in production, send via SMS)
-            print(f"Generated OTP for {mobileNumber}: {otp}")
-
-            return Response({'message': 'OTP sent successfully.'}, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 
 

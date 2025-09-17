@@ -19,10 +19,6 @@ class VehicleDetails(models.Model):
 
 
 
-class OTPDetails(models.Model):
-    otp = models.CharField(max_length=6)
-    mobileNumber = models.CharField(max_length=10)
-    mobileNumberVerified = models.BooleanField(default = False)
-
-    def __str__(self):
-        return f"{self.mobileNumber} - {self.otp}"
+class OTP(models.Model):
+    opt = models.CharField(max_length=6)
+    createdDate = models.DateField(date=now())

@@ -9,4 +9,4 @@ class VehicleDetailsSerializer(serializers.ModelSerializer):
 class otpSerializer(serializers.ModelSerializer):
     class Meta:
         model =   OTPDetails
-        fields = ['mobileNumber']      
+        fields = '__all_'      

@@ -91,7 +91,7 @@ class SendOTPView(APIView):
 
         if serializer.is_valid():
             mobileNumber = serializer.validated_data['mobileNumber']
-            otp = generate_otp(6)
+            otp = generate_otp()
 
             # Save to database
             OTPDetails.objects.create(mobileNumber=mobileNumber, otp=otp)
