@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Upload</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+      padding: 20px;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">Create Profile</h2>
+
+<form id="profileForm" enctype="multipart/form-data" method='post'>
+  {% csrf_token %}
+  <input type="text" name="firstName" placeholder="First Name" required maxlength="12">
+  <input type="text" name="lastName" placeholder="Last Name" required maxlength="12">
+  <input type="file" name="profilePicture" accept="image/*" required>
+  <button type="submit">Submit</button>
+  <div class="message" id="responseMessage"></div>
+</form>
+
+<script>
+  const form = document.getElementById('profileForm');
+  const responseMessage = document.getElementById('responseMessage');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('http://localhost:8000/apis/profile/', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        responseMessage.innerHTML = '✅ Profile created successfully!';
+        responseMessage.className = 'message success';
+        form.reset();
+      } else {
+        responseMessage.innerHTML = '❌ Failed to create profile: ' + JSON.stringify(data);
+        responseMessage.className = 'message error';
+      }
+
+    } catch (error) {
+      responseMessage.innerHTML = '❌ Error: ' + error.message;
+      responseMessage.className = 'message error';
+    }
+  });
+</script>
+
+</body>
+</html>

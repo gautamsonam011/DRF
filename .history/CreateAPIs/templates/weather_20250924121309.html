@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+</head>
+<body>
+    <h1>Weather for {{ city }}</h1>
+
+    <form method="get">
+        <input type="text" name="city" value="{{ city }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if weather_data and weather_data.current %}
+        <p>Temperature: {{ weather_data.current.temp_c }} °C / {{ weather_data.current.temp_f }} °F</p>
+        <p>Condition: {{ weather_data.current.condition.text }}</p>
+        <p>Humidity: {{ weather_data.current.humidity }}%</p>
+        <p>Wind Speed: {{ weather_data.current.wind_kph }} kph</p>
+        <img src="{{ weather_data.current.condition.icon }}" alt="Weather icon">
+    {% else %}
+        <p>No weather data found.</p>
+    {% endif %}
+</body>
+</html>

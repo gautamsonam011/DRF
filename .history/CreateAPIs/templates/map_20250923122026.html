@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Map Integration</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>My Google Map</h2>
+<div id="map"></div>
+
+<script>
+    function initMap() {
+        const location = { lat: 37.7749, lng: -122.4194 }; // Example: San Francisco
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: location,
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+</script>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
+</body>
+</html>
