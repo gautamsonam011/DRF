@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     'CreateAPIs',
     'rest_framework',
     'JWTToken',
-    'rest_framework_simplejwt',
-
 ]
 
 MIDDLEWARE = [
@@ -145,6 +143,3 @@ ONCEHUB_API_KEY = os.getenv("ONCEHUB_API_KEY")
 # environ.Env.read_env()
 # GOOGLE_MAPS_API_KEY = env('AIzaSyD3cIEc-LZsC5hjVgpcmnmO3c3Y97m3wcE')
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHETICATION_CLASSES':('rest_framework_simplejwt.authentication.JWTAuthentication',)
-}
