@@ -4,5 +4,5 @@ from .views import RegisterView, ProtectedView, LoginAPIView
 urlpatterns = [
     path('register/', RegisterView.as_view(), name="register-user"),
     path('protect/', ProtectedView.as_view(), name="protect-access"),
-    path('login/', LoginAPIView.as_view(), name = "user-login"),
+    path('login/', LoginAPIView.as_view(), name = "useer-login"),
 ]

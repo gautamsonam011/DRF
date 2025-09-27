@@ -26,8 +26,6 @@ class RegisterView(APIView):
 
         return Response({
             'message': 'User registered successfully',
-            'user_id': user.id,
-            'username': user.username,
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }, status=status.HTTP_201_CREATED)
@@ -44,36 +42,22 @@ def get_tokens_for_user(user):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }
-
 class LoginAPIView(APIView):
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
-        
-        user = authenticate(username=username, password=password)
-        
-        if user is not None:
-            tokens = get_tokens_for_user(user)
-            return Response(tokens, status=status.HTTP_200_OK)
-        else:
-            return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
-# class LoginAPIView(APIView):
-#     def post(self, request):
-#         username = request.data.get("username")
-#         password = request.data.get("password")
+        if not username or not password:
+            return Response({
+                'error':'Please provide both username and password'
+            }, status = status.HTTP_400_BAD_REQUEST)
 
-#         if not username or not password:
-#             return Response({
-#                 'error':'Please provide both username and password'
-#             }, status = status.HTTP_400_BAD_REQUEST)
+        user = authenticate(username = username, password = password)
 
-#         user = authenticate(username = username, password = password)
+        if not user:
+            return Response({'error': "Invalid credentials"}, status = status.HTTP_401_UNAUTHORIZED)
 
-#         if not user:
-#             return Response({'error': "Invalid credentials"}, status = status.HTTP_401_UNAUTHORIZED)
-
-#         token, created = Token.objects.get_or_create(user=user)
-#         return Response({"token": token.key})      
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({"token": token.key})      
      
             
