@@ -8,9 +8,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 
-from drf_yasg.utils import swagger_auto_schema
-
-
 # Create your views here.
 
 class RegisterView(APIView):
