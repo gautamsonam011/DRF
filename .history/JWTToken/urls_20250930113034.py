@@ -6,5 +6,5 @@ urlpatterns = [
     path('protect/', ProtectedView.as_view(), name="protect-access"),
     path('login/', LoginAPIView.as_view(), name = "user-login"),
     path('hello/', HelloMessage.as_view(), name="hello"),
-    path('swaggerPath/', mySwaggerGetView.as_view(), name='swagger'),
+    path('swaggerPath/', mySwaggerGetView.as_view(), name='swagger')
 ]

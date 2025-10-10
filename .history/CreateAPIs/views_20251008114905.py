@@ -217,76 +217,7 @@ def weather_api_view(request):
 
 
 
-# INSERT INTO VehicleDetails(
-#     VehicleName, 
-#     vehicleCategory,
-#     vehicleBrand,
-#     vehicleNumber,
-#     vehicleColor,
-#     vehicleManu,
-#     vehiclePrice
-#     )
-# VALUES("ACE", "Bike", "BHN", "758694", "Black", "2024", "100000");
-
-# Select vehicleName, vehicleCategory, vehiclePrice 
-# From VehicleDetails;
-
-# 1:- Removing Duplicate Code 
-
-# User first_name, last_name, and other details, Author- first_name, last_name, other details 
-
-def get_user_full_name(user):
-    return f"{user.first_name} {user.last_name}"
-
-def get_author_full_name(author):
-    return f"{author.first_name} {author.last_name}"
-
-
-# Replace these functions 
-
-def get_full_name(obj):
-    return f"{obj.first_name} {obj.last_name}"
-
-# Use meaningful names 
-
-def f(x):
-    return x*3.15
-
-def calculate_circle_area(radius):
-    return radius * 3.14
-
-# Replace magic numbers with constants  
-# Before 
-price = 100
-tax = price*0.08
-
-# After 
-
-price = 100
-tax_rate = 0.08
-
-tax = price*tax_rate
-
-# (4) List Comprehension  
-
-squares = []
-
-for i in range(10):
-    squares.append(i*i)
-
-
-# (5) Use Built-in functions and labraries:--------------
-
-def is_even(n):
-    if n%2 == 0:
-        return True
-    else:
-        return False
-        
-            
-
-
-
+Insert INTO (VehicleName, )
 
 
 

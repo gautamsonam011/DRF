@@ -252,41 +252,6 @@ def get_full_name(obj):
 def f(x):
     return x*3.15
 
-def calculate_circle_area(radius):
-    return radius * 3.14
-
-# Replace magic numbers with constants  
-# Before 
-price = 100
-tax = price*0.08
-
-# After 
-
-price = 100
-tax_rate = 0.08
-
-tax = price*tax_rate
-
-# (4) List Comprehension  
-
-squares = []
-
-for i in range(10):
-    squares.append(i*i)
-
-
-# (5) Use Built-in functions and labraries:--------------
-
-def is_even(n):
-    if n%2 == 0:
-        return True
-    else:
-        return False
-        
-            
-
-
-
 
 
 

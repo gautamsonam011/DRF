@@ -267,23 +267,8 @@ tax_rate = 0.08
 
 tax = price*tax_rate
 
-# (4) List Comprehension  
-
-squares = []
-
-for i in range(10):
-    squares.append(i*i)
 
 
-# (5) Use Built-in functions and labraries:--------------
-
-def is_even(n):
-    if n%2 == 0:
-        return True
-    else:
-        return False
-        
-            
 
 
 
