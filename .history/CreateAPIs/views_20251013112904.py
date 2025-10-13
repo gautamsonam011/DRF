@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import VehicleDetails, OTPDetails, ProfileDetails
@@ -334,76 +334,6 @@ class ItemList(APIView):
             })
 
         return Response({"detail": "Unsupported API version"}, status=400)
-
-
-class CallVehicleNamesView(APIView):
-    data = VehicleDetails.objects.all()  
-    # print(data)
-
-    for new_data in data:
-
-        print({"data":new_data.vehicleName})
-
-import time
-
-#  (1) Database queries
-#            
-# Bad way to write query for this performance 
-def call_vehicle(request):
-    data = VehicleDetails.objects.all()
-    start = time.time() 
-    duration = time.time() - start 
-    print(data)
-
-    for new_data in data:
-
-        print({"data":new_data.vehicleName}) 
-    print(f"{request.method} {request.path} took {duration:.4f} seconds") 
-
-# Good way to write query 
-def call_vehicle_names(request):
-    records = VehicleDetails.select_related('vehicleName')
-    for record in records:
-        print(record.vehicleName)
-
-# (2) Serialization 
-# 
-# (3) Pagination
-
-class VehicleList(APIView):
-    data = VehicleDetails.objects.all()
-
-    @action(detail = False)
-    def state(self, request):
-        count = VehicleDetails.objects.count()
-        return Response({'count':count})
-    
-# (4) Caching  
-# 
-
-from django.core.cache import  cache
-
-def get_cached_vehicle_data():
-
-    cache_key = 'vehicle_data'
-    data = cache.get(cache_key)
-
-    if not data:
-        print("Fetching from DB")
-
-        data = list(VehicleDetails.objects.all().values())
-        cache.set(cache_key, data, timeout=60 * 15)
-
-    else:
-        print("Fetched from cache")
-
-    return data  
-
-@api_view(['GET'])
-def vehicle_list_view(request):
-    data = get_cached_vehicle_data()
-    return Response(data)         
-
     
         
             

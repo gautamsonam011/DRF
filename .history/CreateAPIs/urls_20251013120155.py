@@ -1,7 +1,7 @@
 from django.urls import path
     
     
-from .views import create_views_data, get_all_data, update_record, call_vehicle, vehicle_list_view, vehicle_details_op, postProfile, CallVehicleNamesView, SendOTPView, VerifyOTPView, ItemList, google_map_view, my_google_map_view, weather_api_view
+from .views import create_views_data, get_all_data, update_record, vehicle_details_op, postProfile, CallVehicleNamesView, SendOTPView, VerifyOTPView, ItemList, google_map_view, my_google_map_view, weather_api_view
 
 
 urlpatterns = [
@@ -19,7 +19,5 @@ urlpatterns = [
     path('item/', ItemList.as_view(), name = "item"),
     path('<str:version>/items/', ItemList.as_view(), name='items'),
     path('vehicleNames/', CallVehicleNamesView.as_view(), name="vehicle-name"),
-    path('vehicle-names/', call_vehicle),
-    path('cache/', vehicle_list_view),
     
     ]

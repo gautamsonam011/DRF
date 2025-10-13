@@ -6,7 +6,7 @@ class VehicleDetailsSerializer(serializers.ModelSerializer):
         model = VehicleDetails
         fields = '__all__'
 
-class VehicleNameSerializer(serializers.ModelSerializer):
+class VehicleNameSerializer(serializer.ModelSerializer):
     model = VehicleDetails
     fields = ['vehicleName']        
 

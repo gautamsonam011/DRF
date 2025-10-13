@@ -377,32 +377,6 @@ class VehicleList(APIView):
     def state(self, request):
         count = VehicleDetails.objects.count()
         return Response({'count':count})
-    
-# (4) Caching  
-# 
-
-from django.core.cache import  cache
-
-def get_cached_vehicle_data():
-
-    cache_key = 'vehicle_data'
-    data = cache.get(cache_key)
-
-    if not data:
-        print("Fetching from DB")
-
-        data = list(VehicleDetails.objects.all().values())
-        cache.set(cache_key, data, timeout=60 * 15)
-
-    else:
-        print("Fetched from cache")
-
-    return data  
-
-@api_view(['GET'])
-def vehicle_list_view(request):
-    data = get_cached_vehicle_data()
-    return Response(data)         
 
     
         

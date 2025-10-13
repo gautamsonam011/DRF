@@ -383,7 +383,7 @@ class VehicleList(APIView):
 
 from django.core.cache import  cache
 
-def get_cached_vehicle_data():
+def get_cached_vehicle_data(request):
 
     cache_key = 'vehicle_data'
     data = cache.get(cache_key)

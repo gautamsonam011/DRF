@@ -147,20 +147,6 @@ ONCEHUB_API_KEY = os.getenv("ONCEHUB_API_KEY")
 # GOOGLE_MAPS_API_KEY = env('AIzaSyD3cIEc-LZsC5hjVgpcmnmO3c3Y97m3wcE')
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    'DEFAULT_AUTHETICATION_CLASSES':('rest_framework_simplejwt.authentication.JWTAuthentication',)
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
-    'DEFAULT_VERSION': 'v1',
-    'ALLOWED_VERSIONS': ['v1', 'v2'],
-    'VERSION_PARAM': 'version',
-
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 50,
-}
-
-CACHES = {
-    "default":{
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-    }
 }
