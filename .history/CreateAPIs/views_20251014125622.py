@@ -11,9 +11,9 @@ from django.conf import settings
 import requests
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUSer
 
-user = User.objects.get(username = 'pooja')
+user = User.objects.get(username = 'admin')
 token = Token.objects .create(user = user)
 
 print(token.key)

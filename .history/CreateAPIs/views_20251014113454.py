@@ -9,22 +9,6 @@ from rest_framework.views import APIView
 import random
 from django.conf import settings
 import requests
-from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
-from rest_framework.permissions import IsAdminUser
-
-user = User.objects.get(username = 'pooja')
-token = Token.objects .create(user = user)
-
-print(token.key)
-
-class AdminOnlyView(APIView):
-    permission_classes = [IsAdminUser]
-
-    def get(self, request):
-        return Response({'message': 'Hello Admin!'})
-
-
 
 
 # Create your views here.
@@ -425,36 +409,26 @@ from django.db import connection
 @api_view(['GET'])
 def vehicle_select_list(request):
     # ORM Query 
-    # categories = VehicleDetails.objects.values("vehicleCategory").distinct()
+    categories = VehicleDetails.objects.values("vehicleCategory").distinct()
 
-    # return Response(categories)
+    return Response(categories)
 
     # SQL Query 
+
     # query = "SELECT DISTINCT vehicleCategory FROM VehicleDetails"
 
-    query = " SELECT*FROM VehicleDetails  WHERE NOT vehicleName = 'Tesla Model' "
 
+    # with connection.cursor() as cursor:
+    #     cursor.execute(query)
+    #     results = cursor.fetchall()
 
-    with connection.cursor() as cursor:
-        cursor.execute(query)
-        results = cursor.fetchall()
+    #     # convert results into a list of dictionaries 
 
-        # convert results into a list of dictionaries 
-
-        # vehicle_categories = [
-        #     {"vehicleCategory": category[0]} for category in results
-        # ]
+    #     vehicle_categories = [
+    #         {"vehicleCategory": category[0]} for category in results
+    #     ]
    
     # return Response(vehicle_categories)
-
-        vehicle_names = [
-            {"vehicleName": name[0]} for name in results
-        ]
-
-    return Response(vehicle_names)
-
-# SELECT*FROM VehicleDetails 
-# WHERE NOT vehicleName = "Tesla Model"
     
         
             
