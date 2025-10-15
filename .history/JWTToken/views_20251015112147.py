@@ -1,16 +1,14 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, viewsets
+from rest_framework import status
 from django.contrib.auth.models import User
-from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .models import Book
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -100,19 +98,6 @@ class MySecureView(APIView):
 
     def get(self, request):
         return Response({'message': "Secure data"})
-    
-class AdminOnlyView(APIView):
-    permission_classes = [IsAdminUser]
-
-    def get(self, request):
-        return Response({'message': 'Admins only'})
-
-class BookViewSet(viewsets.ModelViewSet):
-    pass
-
-    # queryset = 
-
-
              
 
 

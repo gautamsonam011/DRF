@@ -1,9 +1,10 @@
-from django.urls import path   
-from .views import create_views_data, get_all_data, update_record, call_vehicle, vehicle_list_view, vehicle_details_op, postProfile, vehicle_select_list, CallVehicleNamesView, SendOTPView, VerifyOTPView, ItemList, google_map_view, my_google_map_view, weather_api_view  #AdminOnlyView
-from rest_framework.authtoken.views import obtain_auth_token
+from django.urls import path
+    
+    
+from .views import create_views_data, get_all_data, update_record, call_vehicle, vehicle_list_view, vehicle_details_op, postProfile, vehicle_select_list, CallVehicleNamesView, SendOTPView, VerifyOTPView, ItemList, google_map_view, my_google_map_view, weather_api_view, AdminOnlyView
+
 
 urlpatterns = [
-    path('api-token-auth/', obtain_auth_token),
     path('post/', create_views_data),
     path('getAll/', get_all_data), 
     path('update/<int:pk>/', update_record),
@@ -21,6 +22,6 @@ urlpatterns = [
     path('vehicle-names/', call_vehicle),
     path('cache/', vehicle_list_view),
     path('vehicle-category/', vehicle_select_list),
-    # path('admin-user/', AdminOnlyView.as_view(), name="admin-user"),
+    path('admin-user/', AdminOnlyView.as_view(), name="admin-user"),
     
     ]

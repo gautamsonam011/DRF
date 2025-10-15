@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, ProtectedView, LoginAPIView, mySwaggerGetView, HelloMessage, MySecureView, AdminOnlyView
+from .views import RegisterView, ProtectedView, LoginAPIView, mySwaggerGetView, HelloMessage, MySecureView
 
 urlpatterns = [
     path('register/', RegisterView.as_view(), name="register-user"),
@@ -8,5 +8,4 @@ urlpatterns = [
     path('hello/', HelloMessage.as_view(), name="hello"),
     path('swaggerPath/', mySwaggerGetView.as_view(), name='swagger'),
     path('secure/', MySecureView.as_view(), name="secure-api"),
-    path('admin/', AdminOnlyView.as_view(), name="admin")
 ]

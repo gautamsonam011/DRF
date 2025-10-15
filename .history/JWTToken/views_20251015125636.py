@@ -108,9 +108,8 @@ class AdminOnlyView(APIView):
         return Response({'message': 'Admins only'})
 
 class BookViewSet(viewsets.ModelViewSet):
-    pass
 
-    # queryset = 
+    queryset = 
 
 
              

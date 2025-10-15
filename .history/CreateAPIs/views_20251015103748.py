@@ -10,8 +10,8 @@ import random
 from django.conf import settings
 import requests
 # from rest_framework.authtoken.models import Token
-# from django.contrib.auth.models import User
-# from rest_framework.permissions import IsAdminUser
+from django.contrib.auth.models import User
+from rest_framework.permissions import IsAdminUser
 
 # user = User.objects.get(username = 'pooja')
 # token = Token.objects .create(user = user)

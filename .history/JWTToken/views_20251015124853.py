@@ -10,7 +10,6 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from .models import Book
 
 # Create your views here.
 
@@ -108,9 +107,6 @@ class AdminOnlyView(APIView):
         return Response({'message': 'Admins only'})
 
 class BookViewSet(viewsets.ModelViewSet):
-    pass
-
-    # queryset = 
 
 
              
